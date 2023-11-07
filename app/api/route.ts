@@ -23,6 +23,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
     // Get the request body
+    console.log(request.body)
     const body = await request.json()
 
     // GPT3.5 request to create: headline, author, body, and image prompt
