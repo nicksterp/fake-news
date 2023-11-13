@@ -24,13 +24,18 @@ export default function Form() {
             }
         })
 
-        const response = await fetch('/api', {
+        await fetch('/api', {
             method: 'POST',
             body: JSON.stringify(jsonData),
-        })
+        }).then(function (response) {
+            return response.json()
+        }).then(
+            function (data) {
+                console.log(data.id)
+                redirect(data.id)
+            }
+        )
 
-        console.log(response.body)
-        //redirect("/article/" + data.id)
     }
 
     return (

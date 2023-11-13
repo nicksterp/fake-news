@@ -1,29 +1,38 @@
 import OpenAI from "openai"
-import { PrismaClient } from "@prisma/client"
+import prisma from "../../prisma/db"
+import { redirect } from "next/navigation"
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 })
 
-const prisma = new PrismaClient()
-
 export async function GET(request: Request) {
-    const body = await request.json()
 
-    // Get article from database
-    const article = await prisma.articles.findUnique({
-        where: {
-            id: body.id
-        }
-    })
 
-    // Return article
-    return new Response(JSON.stringify(article), { status: 200 })
+    const url = new URL(request.url)
+    const searchParams = new URLSearchParams(url.search)
+    const id = searchParams.get('id')
+
+    console.log(id)
+
+    if (typeof(id) == "string"){
+        console.log("Getting article with id: " + id)
+        // Get article from database
+        const article = await prisma.articles.findUnique({
+            where: {
+                id: id
+            }
+        })
+        
+        // Return article
+        return new Response(JSON.stringify(article), { status: 200 })
+    } else {
+        redirect('404')
+    }
 }
 
 export async function POST(request: Request) {
     // Get the request body
-    console.log(request.body)
     const body = await request.json()
 
     // GPT3.5 request to create: headline, author, body, and image prompt
