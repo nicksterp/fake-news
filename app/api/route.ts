@@ -107,6 +107,7 @@ export async function POST(request: Request) {
       data: {
         headline: chatJson.headline,
         body: chatJson.body,
+        image_url: "",
       },
     });
 
