@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 interface ArticleData {
     headline: string;
     body: string;
-    image_URL: string;
+    image_url: string;
 }
 
 export default function Article({ params }: { params: { id: string } }) {
@@ -18,7 +18,6 @@ export default function Article({ params }: { params: { id: string } }) {
             try {
                 const res = await fetch(`/api?id=${params.id}`);
                 const data = await res.json();
-                console.log(data)
                 setArticle(data);
             } catch (error) {
                 console.error("Failed to load article", error);
@@ -29,6 +28,8 @@ export default function Article({ params }: { params: { id: string } }) {
         fetchArticle();
     }, [params.id]);
 
+    console.log(article?.image_url)
+
     return (
         <>
             <Header />
@@ -36,7 +37,7 @@ export default function Article({ params }: { params: { id: string } }) {
                 <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16">
                     <article className="prose prose-zinc mx-auto dark:prose-invert max-w-xl">
                         <div className="space-y-2 not-prose">
-                            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl lg:leading-[3.5rem]">
+                            <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl lg:leading-[3.5rem] text-center">
                                 {article.headline}
                             </h1>
                             <p className="text-zinc-500 dark:text-zinc-400">Posted on November 13, 2023</p>
@@ -45,7 +46,7 @@ export default function Article({ params }: { params: { id: string } }) {
                             alt="Breaking news image"
                             className="aspect-content overflow-hidden rounded-lg object-cover"
                             height={400}
-                            src={article.image_URL}
+                            src={article.image_url}
                             width={1200}
                         />
                         <br />

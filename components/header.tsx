@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Header() {
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white">
-            <Link href="#">
+            <Link href="/">
                 <svg
                     className=" h-6 w-6 text-white"
                     fill="none"
@@ -24,25 +24,25 @@ export default function Header() {
                 <span className="sr-only">News Page</span>
             </Link>
             <nav className="flex space-x-4">
-                <Link href="#">
+                <Link href="/">
                     Home
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     World
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     Politics
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     Business
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     Technology
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     Science
                 </Link>
-                <Link href="#">
+                <Link href="/">
                     Health
                 </Link>
             </nav>

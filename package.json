@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.472.0",
     "@prisma/client": "^5.5.2",
+    "aws-sdk": "^2.1518.0",
     "next": "14.0.1",
-    "openai": "^4.15.4",
+    "openai": "^4.21.0",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/node": "^20",
+    "@types/node-fetch": "^2.6.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

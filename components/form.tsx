@@ -1,11 +1,15 @@
 "use client"
-import { redirect } from 'next/navigation'
 import { FormEvent } from 'react'
-
+import { useState } from 'react'
+import { useRouter } from "next/navigation";
 export default function Form() {
 
+    const [loading, setLoading] = useState(false)
+    const router = useRouter();
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
+
+        setLoading(true)
 
         const jsonData: { [key: string]: FormDataEntryValue | FormDataEntryValue[] } = {};
         const formData = new FormData(event.currentTarget)
@@ -24,27 +28,31 @@ export default function Form() {
             }
         })
 
-        await fetch('/api', {
+        const id = await fetch('/api', {
             method: 'POST',
             body: JSON.stringify(jsonData),
         }).then(function (response) {
             return response.json()
         }).then(
             function (data) {
-                console.log(data.id)
-                redirect(data.id)
+                return (data.id)
             }
         )
 
+        router.push('/' + id);
     }
 
     return (
-        <form className="flex-col items-center justify-between p-24" onSubmit={onSubmit}>
-            <div className="flex flex-col items-center justify-between p-24" >
+        <form className="flex flex-col items-center justify-between p-5" onSubmit={onSubmit}>
+            <div className="flex flex-col items-center justify-between p-5" >
                 <label className="text-2xl font-bold">Headline</label>
-                <input className="border-2 border-gray-500 rounded-md text-black" name="headline" type="text" />
+                <input disabled={loading} className="border-2 border-gray-500 rounded-md text-black w-[50vh]" name="headline" type="text" />
             </div >
-            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send</button>
+            <button type="submit" disabled={loading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send</button>
+            {/* if Loading true, show loading spinner */}
+            {loading && <div className="flex justify-center items-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white"></div>
+            </div>}
         </form >
     )
 }
