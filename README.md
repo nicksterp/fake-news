@@ -6,11 +6,12 @@ Messing around. This is not to be taken seriously, and was not built to be exten
 ## Tech
 - [OpenAI's GPT-3 API](https://openai.com/blog/openai-api/)
 - [OpenAI's DALL-E API](https://openai.com/blog/dall-e/)
-- [Prisma] (https://www.prisma.io/)
-- [S3] (https://aws.amazon.com/s3/)
-- [Next.js] (https://nextjs.org/)
-- [React] (https://reactjs.org/)
-- [Tailwind] (https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/)
+- [S3](https://aws.amazon.com/s3/)
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Docker](https://www.docker.com/)
 
 ## Setup
 1. Clone the repo
